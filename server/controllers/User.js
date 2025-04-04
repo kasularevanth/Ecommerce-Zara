@@ -148,9 +148,8 @@ export const placeOrder = async (req, res, next) => {
     });
     await order.save();
 
-    user.cart.save();
-
     user.cart = [];
+
     await user.save();
 
     return res
@@ -175,12 +174,11 @@ export const getAllOrders = async (req, res, next) => {
 
 export const addToFavorites = async (req, res, next) => {
   try {
-    const { productId } = req.body;
+    const { productID } = req.body;
     const userJWT = req.user;
     const user = await User.findById(userJWT.id);
-
-    if (!user.favourites.includes(productId)) {
-      user.favourites.push(productId);
+    if (!user.favourites.includes(productID)) {
+      user.favourites.push(productID);
       await user.save();
     }
 
@@ -194,11 +192,11 @@ export const addToFavorites = async (req, res, next) => {
 
 export const removeFromFavorites = async (req, res, next) => {
   try {
-    const { productId } = req.body;
+    const { productID } = req.body;
     const userJWT = req.user;
     const user = await User.findById(userJWT.id);
 
-    user.favourites = user.favourites.filter((fav) => !fav.equals(productId));
+    user.favourites = user.favourites.filter((fav) => !fav.equals(productID));
     await user.save();
     return res
       .status(200)
