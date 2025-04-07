@@ -50,18 +50,28 @@ const Favourite = () => {
   const [reload, setReload] = useState(false);
 
   const getProducts = async () => {
-    setLoading(true);
     const token = localStorage.getItem("krist-app-token");
-    await getFavourite(token).then((res) => {
-      setProducts(res.data);
+    if (!token || token === "undefined") {
       setLoading(false);
-      setReload(!reload);
-    });
+      return;
+    }
+  
+    setLoading(true);
+    try {
+      const res = await getFavourite(token);
+      setProducts(res.data);
+    } catch (err) {
+      console.error("Error fetching favorites:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("krist-app-token");
+    if (!token || token === "undefined") return;
     getProducts();
-  }, []);
+  }, [reload]);
   return (
     <Container>
       <Section>
@@ -75,8 +85,8 @@ const Favourite = () => {
                 <>No Products</>
               ) : (
                 <CardWrapper>
-                  {products.map((product) => (
-                    <ProductCard product={product} />
+                  {products.map((product, index) => (
+                    <ProductCard key={index} product={product} />
                   ))}
                 </CardWrapper>
               )}

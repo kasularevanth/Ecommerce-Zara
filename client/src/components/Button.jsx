@@ -49,8 +49,8 @@ ${({ flex }) =>
     flex: 1;
 `}
 
-${({ small }) =>
-    small &&
+${({ $small }) =>
+    $small &&
     `
 padding: 10px 28px;
 `}

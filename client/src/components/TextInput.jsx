@@ -18,8 +18,8 @@ const Label = styled.label`
     `
     color: ${theme.red};
   `}
-  ${({ small }) =>
-    small &&
+  ${({ $small }) =>
+    $small &&
     `
     font-size: 8px;
   `}

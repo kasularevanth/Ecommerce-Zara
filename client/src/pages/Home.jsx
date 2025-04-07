@@ -79,17 +79,17 @@ const Home = () => {
       <Section>
         <Title>Shop by Categories</Title>
         <CardWrapper>
-          {category.map((category) => (
-            <ProductCategoryCard category={category} />
-          ))}
+        {category.map((category, index) => (
+          <ProductCategoryCard key={index} category={category} />
+        ))}
         </CardWrapper>
       </Section>
       <Section>
         <Title center>Our Bestseller</Title>
         <CardWrapper>
-          {products.map((product) => (
-            <ProductCard product={product} />
-          ))}
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
         </CardWrapper>
       </Section>
     </Container>

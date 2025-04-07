@@ -183,7 +183,7 @@ const Navbar = ({ openAuth, setOpenAuth, currentUser }) => {
               Contact
             </Navlink>
             {currentUser ? (
-              <Button text="Logout" small onClick={() => dispatch(logout())} />
+              <Button text="Logout"  small="true" onClick={() => dispatch(logout())} />
             ) : (
               <div
                 style={{
@@ -195,12 +195,12 @@ const Navbar = ({ openAuth, setOpenAuth, currentUser }) => {
                 <Button
                   text="Sign Up"
                   outlined
-                  small
+                  small="true"
                   onClick={() => setOpenAuth(!openAuth)}
                 />
                 <Button
                   text="Sign In"
-                  small
+                   small="true"
                   onClick={() => setOpenAuth(!openAuth)}
                 />
               </div>
@@ -236,7 +236,7 @@ const Navbar = ({ openAuth, setOpenAuth, currentUser }) => {
           ) : (
             <Button
               text="SignIn"
-              small
+               small="true"
               onClick={() => setOpenAuth(!openAuth)}
             />
           )}
@@ -271,7 +271,7 @@ const Navbar = ({ openAuth, setOpenAuth, currentUser }) => {
           ) : (
             <Button
               text="SignIn"
-              small
+               small="true"
               onClick={() => setOpenAuth(!openAuth)}
             />
           )}

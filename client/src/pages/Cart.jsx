@@ -150,11 +150,16 @@ const Cart = () => {
   const getProducts = async () => {
     setLoading(true);
     const token = localStorage.getItem("krist-app-token");
+    if (!token) {
+      setLoading(false);
+      return;
+    }
     await getCart(token).then((res) => {
       setProducts(res.data);
       setLoading(false);
     });
   };
+
 
   const addCart = async (id) => {
     const token = localStorage.getItem("krist-app-token");
@@ -203,9 +208,10 @@ const Cart = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("krist-app-token");
+    if (!token || token === "undefined") return; // 🔐 prevent API call if token invalid
     getProducts();
   }, [reload]);
-
   const convertAddressToString = (addressObj) => {
     // Convert the address object to a string representation
     return `${addressObj.firstName} ${addressObj.lastName}, ${addressObj.completeAddress}, ${addressObj.phoneNumber}, ${addressObj.emailAddress}`;
@@ -284,7 +290,7 @@ const Cart = () => {
                   <TableItem></TableItem>
                 </Table>
                 {products?.map((item) => (
-                  <Table>
+                  <Table key={item?.product?._id}>
                     <TableItem flex>
                       <Product>
                         <Img src={item?.product?.img} />
@@ -327,7 +333,7 @@ const Cart = () => {
                     </TableItem>
                     <TableItem>
                       <DeleteOutline
-                        sx={{ color: "red" }}
+                        sx={{ color: "red",cursor: "pointer" }}
                         onClick={() =>
                           removeCart(
                             item?.product?._id,
@@ -354,7 +360,7 @@ const Cart = () => {
                       }}
                     >
                       <TextInput
-                        small
+                         small="true"
                         placeholder="First Name"
                         value={deliveryDetails.firstName}
                         handelChange={(e) =>
@@ -365,7 +371,7 @@ const Cart = () => {
                         }
                       />
                       <TextInput
-                        small
+                         small="true"
                         placeholder="Last Name"
                         value={deliveryDetails.lastName}
                         handelChange={(e) =>
@@ -377,7 +383,7 @@ const Cart = () => {
                       />
                     </div>
                     <TextInput
-                      small
+                       small="true"
                       value={deliveryDetails.emailAddress}
                       handelChange={(e) =>
                         setDeliveryDetails({
@@ -388,7 +394,7 @@ const Cart = () => {
                       placeholder="Email Address"
                     />
                     <TextInput
-                      small
+                       small="true"
                       value={deliveryDetails.phoneNumber}
                       handelChange={(e) =>
                         setDeliveryDetails({
@@ -399,7 +405,7 @@ const Cart = () => {
                       placeholder="Phone no. +91 XXXXX XXXXX"
                     />
                     <TextInput
-                      small
+                       small="true"
                       textArea
                       rows="5"
                       handelChange={(e) =>
@@ -416,22 +422,22 @@ const Cart = () => {
                 <Delivery>
                   Payment Details:
                   <div>
-                    <TextInput small placeholder="Card Number" />
+                    <TextInput  small="true" placeholder="Card Number" />
                     <div
                       style={{
                         display: "flex",
                         gap: "6px",
                       }}
                     >
-                      <TextInput small placeholder="Expiry Date" />
-                      <TextInput small placeholder="CVV" />
+                      <TextInput  small="true" placeholder="Expiry Date" />
+                      <TextInput  small="true" placeholder="CVV" />
                     </div>
-                    <TextInput small placeholder="Card Holder name" />
+                    <TextInput  small="true" placeholder="Card Holder name" />
                   </div>
                 </Delivery>
                 <Button
                   text="Pace Order"
-                  small
+                   small="true"
                   isLoading={buttonLoad}
                   isDisabled={buttonLoad}
                   onClick={PlaceOrder}

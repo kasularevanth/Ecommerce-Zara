@@ -104,7 +104,7 @@ const ShopListing = () => {
   ]); // Default selected categories
 
   const getFilteredProductsData = useCallback(async () => {
-    console.log(category);
+    
     setLoading(true);
     await getAllProducts(
       `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}${

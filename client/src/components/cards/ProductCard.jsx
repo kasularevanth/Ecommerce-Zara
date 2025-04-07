@@ -214,6 +214,8 @@ const ProductCard = ({ product }) => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem("krist-app-token");
+    if (!token || token === "undefined") return; // ⛔ Don't proceed if token is missing
     checkFavourite();
   }, []);
   return (

@@ -230,8 +230,13 @@ const ProductDetails = () => {
 
   useEffect(() => {
     getProduct();
-    checkFavourite();
-  }, [getProduct, checkFavourite]);
+  }, [getProduct]);
+
+  useEffect(() => {
+    if (product?._id) {
+      checkFavourite();
+    }
+  }, [product?._id, checkFavourite]);
 
   return (
     <Container>
