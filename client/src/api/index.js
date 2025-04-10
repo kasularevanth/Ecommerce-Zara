@@ -1,15 +1,17 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "https://ecommerce-zara.onrender.com",
 });
 
 export const UserSignUp = async (data) => await API.post("/user/signup", data);
 export const UserSignIn = async (data) => await API.post("/user/signin", data);
 
 //Products
-export const getAllProducts = async (filter) =>
-  await API.get(`/products?${filter}`);
+export const getAllProducts = async (filter) => {
+  const url = filter ? `/products?${filter}` : "/products";
+  return await API.get(url);
+};
 
 export const getProductDetails = async (id) => await API.get(`/products/${id}`);
 
