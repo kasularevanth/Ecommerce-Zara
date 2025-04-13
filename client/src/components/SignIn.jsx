@@ -37,7 +37,7 @@ const TextButton = styled.div`
   }
 `;
 
-const SignIn = () => {
+const SignIn = ({setOpenAuth}) => {
   const dispatch = useDispatch();
   const [buttonLoading, setButtonLoading] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -65,6 +65,9 @@ const SignIn = () => {
               severity: "success",
             })
           );
+          
+          setOpenAuth(false);
+
         })
         .catch((err) => {
           if (err.response) {
