@@ -160,7 +160,6 @@ const Cart = () => {
     });
   };
 
-
   const addCart = async (id) => {
     const token = localStorage.getItem("krist-app-token");
     await addToCart(token, { productId: id, quantity: 1 })
@@ -333,7 +332,7 @@ const Cart = () => {
                     </TableItem>
                     <TableItem>
                       <DeleteOutline
-                        sx={{ color: "red",cursor: "pointer" }}
+                        sx={{ color: "red", cursor: "pointer" }}
                         onClick={() =>
                           removeCart(
                             item?.product?._id,
@@ -360,7 +359,7 @@ const Cart = () => {
                       }}
                     >
                       <TextInput
-                         small="true"
+                        small="true"
                         placeholder="First Name"
                         value={deliveryDetails.firstName}
                         handelChange={(e) =>
@@ -371,7 +370,7 @@ const Cart = () => {
                         }
                       />
                       <TextInput
-                         small="true"
+                        small="true"
                         placeholder="Last Name"
                         value={deliveryDetails.lastName}
                         handelChange={(e) =>
@@ -383,7 +382,7 @@ const Cart = () => {
                       />
                     </div>
                     <TextInput
-                       small="true"
+                      small="true"
                       value={deliveryDetails.emailAddress}
                       handelChange={(e) =>
                         setDeliveryDetails({
@@ -394,7 +393,7 @@ const Cart = () => {
                       placeholder="Email Address"
                     />
                     <TextInput
-                       small="true"
+                      small="true"
                       value={deliveryDetails.phoneNumber}
                       handelChange={(e) =>
                         setDeliveryDetails({
@@ -405,7 +404,7 @@ const Cart = () => {
                       placeholder="Phone no. +91 XXXXX XXXXX"
                     />
                     <TextInput
-                       small="true"
+                      small="true"
                       textArea
                       rows="5"
                       handelChange={(e) =>
@@ -422,22 +421,22 @@ const Cart = () => {
                 <Delivery>
                   Payment Details:
                   <div>
-                    <TextInput  small="true" placeholder="Card Number" />
+                    <TextInput small="true" placeholder="Card Number" />
                     <div
                       style={{
                         display: "flex",
                         gap: "6px",
                       }}
                     >
-                      <TextInput  small="true" placeholder="Expiry Date" />
-                      <TextInput  small="true" placeholder="CVV" />
+                      <TextInput small="true" placeholder="Expiry Date" />
+                      <TextInput small="true" placeholder="CVV" />
                     </div>
-                    <TextInput  small="true" placeholder="Card Holder name" />
+                    <TextInput small="true" placeholder="Card Holder name" />
                   </div>
                 </Delivery>
                 <Button
                   text="Pace Order"
-                   small="true"
+                  small="true"
                   isLoading={buttonLoad}
                   isDisabled={buttonLoad}
                   onClick={PlaceOrder}

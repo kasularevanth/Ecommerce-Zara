@@ -55,7 +55,7 @@ const Favourite = () => {
       setLoading(false);
       return;
     }
-  
+
     setLoading(true);
     try {
       const res = await getFavourite(token);
@@ -86,7 +86,12 @@ const Favourite = () => {
               ) : (
                 <CardWrapper>
                   {products.map((product, index) => (
-                    <ProductCard key={index} product={product} />
+                    <ProductCard
+                      key={index}
+                      product={product}
+                      setReload={setReload}
+                      reload={reload}
+                    />
                   ))}
                 </CardWrapper>
               )}
