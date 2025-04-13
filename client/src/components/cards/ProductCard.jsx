@@ -134,7 +134,7 @@ const Percent = styled.div`
   color: green;
 `;
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setReload, reload }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [favorite, setFavorite] = useState(false);
@@ -165,6 +165,7 @@ const ProductCard = ({ product }) => {
       .then((res) => {
         setFavorite(false);
         setFavoriteLoading(false);
+        setReload(!reload);
       })
       .catch((err) => {
         setFavoriteLoading(false);
